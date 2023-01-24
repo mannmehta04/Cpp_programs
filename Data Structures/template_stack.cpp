@@ -72,10 +72,7 @@ int main(){
                 exit(0);
             }
             else{
-                cout<<"Enter Number to be pushed \t";
-                cin>>n;
-
-                s1.push(n);
+                s1.push();
 
                 cout<<"Element Successfully Pushed. \n";
             }
