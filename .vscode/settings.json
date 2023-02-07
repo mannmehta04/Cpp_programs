@@ -1,0 +1,12 @@
+{
+    "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+        "clang-diagnostic-error",
+        "clang-diagnostic-error"
+    ],
+    "files.associations": {
+        "iostream": "cpp",
+        "string": "cpp",
+        "span": "cpp",
+        "type_traits": "cpp"
+    }
+}

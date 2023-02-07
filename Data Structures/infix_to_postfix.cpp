@@ -1,128 +1,68 @@
-#include<iostream>
-#include<string.h>
-#define high 10
+#include<bits/stdc++.h>
 using namespace std;
 
-char stk[high];
-char array[20];
-int top=-1, actual, current;
+int precedence(char m){
+  
+  if(m == '^') 
+    return 3; 
+  else if(m == '*' || m == '/') 
+    return 2; 
+  else if(m == '+' || m == '-') 
+    return 1;
+  else;
+    return 0;
 
-class postfix{
+}
 
-    public:
+void convert(string t){
+  stack<char> s;
+  int len = t.length();
+  string ans;
+  
+  for(int i = 0; i < len; i++){ 
+    if((t[i] >= 'a' && t[i] <= 'z') || (t[i] >= 'A' && t[i] <= 'Z')) 
+        ans+=t[i]; 
 
-    postfix(){
-
-        string str;
-
-        cout<<"Enter String: ";
-        cin>>str;
-
-        //conversion into char
-        int i=0;
-        do{
-            array[i]=str[i];
-            i++;
-        }while(str[i]!='\0');
-
-    }
-
-    int check_operand(char exp[]){
-        int n;
-        for(int i=0; i<sizeof(array); i++){
-            if(exp[i]>='a' && exp[i]<='z' || exp[i]>='A' && exp[i]<='Z'){
-                n=1;
-                current=i;
-            }
-            else if(exp[i]=='*' || exp[i]=='\\' ){
-                n=2;
-                current=i;
-            }
-            else if(exp[i]=='+' || exp[i]=='-' ){
-                n=3;
-                current=i;
-            }
-        }
-
-        return n;
-    }
-
-    void convert(char exp[]){
-        char temp_ch;
-
-        if (check_operand(exp)==1){
-            cout<<array[current];
-        }
-        else if (check_operand(exp)==2){
-            if(stk[top]=='+' && stk[top]=='-')
-                push(array[current]);
-            else if(stk[top]=='*' && stk[top]=='\\'){
-                temp_ch=pop(); //retrive higher precedence operator
-                push(array[current]);
-                cout<<temp_ch;
-            }
-        }
-        else if (check_operand(exp)==3){
-            if(stk[top]=='+' && stk[top]=='-')
-                push(array[current]);
-            else if(stk[top]=='*' && stk[top]=='\\'){
-                temp_ch=pop(); //retrive higher precedence operator
-                push(array[current]);
-                cout<<temp_ch;
-            }
-        }
-    }
-
-    // void retrive_copy(char exp[]){
-    //     char ch = stk[top];
-    // }
-
-    void push(char n){
-        if(top==high-1){
-            cout<<"Stack Overflow";
-            exit(0);
-        }
-        else{
-            top++;
-            stk[top]=n;
-        }
-    }
-
-    char pop(){
-        char temp;
-
-        if(top==-1){
-            cout<<"Stack Underflow";
-            exit(0);
-        }
-        else{
-            temp=stk[top];
-            stk[top]=0;
-            top--;
-        }
+    else if(t[i] == '(') 
+        s.push('('); 
         
-        return temp;
+    else if(t[i] == ')'){ 
+      while(s.top() != '('){
+        char c = s.top(); 
+        ans += c;
+        s.pop();
+      }
+      if(s.top() == '(') 
+      { 
+        char c = s.top(); 
+        s.pop(); 
+      } 
     }
+    else{ 
+      while(s.empty()==false && precedence(t[i]) <= precedence(s.top())){ 
+        char c = s.top();
+        ans += c; 
+        s.pop(); 
+      }
+      s.push(t[i]); 
+    }
+  }
 
-    void display_stack(){
-        for(int i=high-1;i>=0;i--){
-            cout<<stk[i]<<"\n";
-        }
-        cout<<endl;
-    }
-
-    void display_expression(){
-        cout<<"Your Expression is: ";
-        for (int i = 0; i < sizeof(array); i++){
-            cout<<array[i];
-        }
-    }
-};
+  while(s.empty() == false){ 
+    char c = s.top();
+    ans += c;
+    s.pop();
+  } 
+  
+  cout << "Postfix Expression: " << ans << endl; 
+}
 
 int main(){
-    
-    postfix p1;
-    p1.display_expression();
-    
-    return 0;
-}
+  string s;
+  cout<<"Enter Expression: ";
+  cin>>s;
+  // string s = "a+b*c"; 
+  
+  convert(s);
+  return 0; 
+} 
