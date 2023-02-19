@@ -11,17 +11,34 @@ int fact(int n){
         return 0;
 }
 
+int fib(int n){
+    if(n==0){
+        return 0;
+    }
+    else if(n==1){
+        return 1;
+    }
+    else{
+        return (fib(n-2)+fib(n-1));
+    }
+}
+
 int main(){
 
-    int ans, n;
+    int fa, fi, n;
     cout<<endl;
     cout<<"Enter number: ";
     cin>>n;
 
-    ans=fact(n);
+    fa = fact(n);
 
     cout<<endl;
-    cout<<"Answer: "<<ans;
+    cout<<"Factorial: "<<fa<<endl;
+    cout<<"Fibonacci: "<<endl;
+
+    for(int i=0;i<n;i++){
+        cout<<fib(i)<<endl;
+    }
 
     return 0;
 }
