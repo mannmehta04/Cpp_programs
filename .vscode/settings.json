@@ -7,6 +7,7 @@
         "iostream": "cpp",
         "string": "cpp",
         "span": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "iosfwd": "cpp"
     }
 }
