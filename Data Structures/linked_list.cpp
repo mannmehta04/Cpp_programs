@@ -39,10 +39,10 @@ void node::append_node(node *newNode){
     tp -> next = newNode;
 }
 
-void node::append_after(int newData, node *newNode){
+void node::append_after(int afterData, node *newNode){
     node *tp = this;
     
-    while(tp -> data != newData && tp -> next != NULL){
+    while(tp -> data != afterData && tp -> next != NULL){
         tp = tp -> next;
     }
     //update behind ptr first then behind one
@@ -50,11 +50,11 @@ void node::append_after(int newData, node *newNode){
     tp -> next = newNode;
 }
 
-node* node::delete_node(int newData){
+node* node::delete_node(int dataToBeDeleted){
     node *tp = this;
     node *prev = this;
     
-    while(tp -> data != newData){
+    while(tp -> data != dataToBeDeleted){
         prev = tp;
         tp = tp -> next;
     }
