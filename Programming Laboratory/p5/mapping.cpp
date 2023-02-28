@@ -27,7 +27,7 @@ void mapping::input(){
 
 void mapping::display(){
     map<string, int>::iterator it = dataMap.begin();
-    cout<<"Printing Data in Dictionary Order:\n\n";
+    cout<<"Printing Data in Lexicographical Order:\n\n";
     cout<<"\t Key \t\t Frequency"<<endl;
     while(it!=dataMap.end()){
         cout<<"\t "<<it-> first<<" \t\t "<<it->second<<endl;

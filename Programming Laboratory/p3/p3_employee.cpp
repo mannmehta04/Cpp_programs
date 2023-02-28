@@ -125,7 +125,7 @@ int main() {
     emp.writeDataToFile();
     emp.searchEmployee(201);
     emp.editEmployee(201);
-    // emp.deleteEmployee(201);
+    emp.deleteEmployee(202);
     emp.displayAllEmployees();
     return 0;
 }
